@@ -37,6 +37,18 @@ function changeString(){
         string += '--postgresql no ';
     }
     string +=  $('#ftp').val() + $('#mail').val();
+    if($('#clamav').is(":checked")){
+        string += '--clamav yes ';
+    }else{
+        string += '--clamav no ';
+    }
+    
+     if($('#spamassassin').is(":checked")){
+        string += '--spamassassin yes ';
+    }else{
+        string += '--spamassassin no ';
+    }   
+    
     string += $('#firewall').val() + $('#quota').val();
     
     if($('#hostname').val()){

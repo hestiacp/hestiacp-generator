@@ -43,9 +43,9 @@
                         Database
                     </div>
                 </div>
-                <div class="row">
+                <div class="row space">
                     <div class="col-12">
-                        <input type="checkbox" checked id="mysql" name="mysql" value="--mysql yes" /> MariaDB (Opensoure Mysql)
+                        <input type="checkbox" checked id="mysql" name="mysql" value="--mysql yes" /> MariaDB (Opensource Mysql)
                     </div>
                 </div>
                 <div class="row space">
@@ -74,15 +74,32 @@
                 <div class="row space">
                     <div class="col-12">
                         <select name="mail" id="mail">
-                            <option value="--exim yes --dovecot yes --spamassassin yes --clamav yes ">Exim / Dovecot / ClamAV / SpamAssassin</option>
-                            <option value="--exim yes --dovecot yes --spamassassin no --clamav yes ">Exim / Dovecot / ClamAV </option>
-                            <option value="--exim yes --dovecot yes --clamav no --spamassassin yes ">Exim / Dovecot / SpamAssassin </option>
-                            <option value="--exim yes --dovecot yes --clamav no --spamassassin no " selected>Exim / Dovecot </option>
-                            <option value="--exim yes --dovecot no --spamassassin no --clamav no ">Exim </option>
-                            <option value="--exim no --dovecot no --spamassassin no --clamav no ">No Mail</option>
+                            <option value="--exim yes --dovecot yes " selected>Exim / Dovecot </option>
+                            <option value="--exim yes --dovecot no  ">Exim </option>
+                            <option value="--exim no --dovecot no ">No Mail</option>
                         </select>
                     </div>
-                </div>                
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Anti virus
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <input type="checkbox" value="--clamav yes " id="clamav"/> ClamAV
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Anti Spam
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <input type="checkbox" value="--spamassassin yes " id="spamassassin"/> SpamAssassin
+                    </div>
+                </div>                                                  
                 <div class="row">
                     <div class="col-12">
                         <div class="alert alert-info">SpamAssassin / ClamAV require at least 2 GB of memory!</div>
@@ -93,7 +110,7 @@
                         Firewall
                     </div>
                 </div>
-                <div class="row">
+                <div class="row space">
                     <div class="col-12">
                         <select name="firewall" id="firewall">
                             <option value="--iptables yes --fail2ban yes " selected>Iptables / Fail2Ban</option>
@@ -124,7 +141,7 @@
                 </div>
                 <div class="row space">
                     <div class="col-12">
-                        <input type="text" value="" name="hostname" id="hostname">
+                        <input type="text" value="" name="hostname" id="hostname" placeholder="server.mydomain.com">
                     </div>
                 </div>
                 <div class="row">
@@ -144,7 +161,7 @@
                 </div>
                 <div class="row space">
                     <div class="col-12">
-                        <input type="text" value="" name="email" id="email">
+                        <input type="text" value="" name="email" id="email" placeholder="me@email.com">
                     </div>
                 </div>  
                 <div class="row">
@@ -154,7 +171,7 @@
                 </div>
                 <div class="row space">
                     <div class="col-12">
-                        <input type="text" value="" name="password" id="password">
+                        <input type="text" value="" name="password" id="password" placeholder="mypassword">
                     </div>
                 </div>
                 <div class="row space">
@@ -162,7 +179,7 @@
                         Default language 
                     </div>  
                 </div>
-                <div class="row">
+                <div class="row space">
                     <div class="col-12">
                         <select name="lang" id="lang">
                         <option value="--lang ar">ar</option>
