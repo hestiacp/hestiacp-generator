@@ -1,0 +1,256 @@
+<html>
+    <head>
+        <title>Hestia installer string generator</title>
+        <link href="./style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body>
+    <div class="content">
+        <h1>Please select your options</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <label>Webserver</label>
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <select name="web" id="web">
+                            <option value="--nginx yes --apache yes " selected>NGINX + Apache2</option>
+                            <option value="--apache no " >NGINX Only</option>
+                            <option value="--nginx no " >Apache2 Only</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>PHP</label>
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <select name="php" id="php">
+                            <option value="--phpfpm yes --multiphp no">FPM</opton>
+                            <option value="--multiphp yes ">FPM + Multi PHP</option>
+                            <option value="--phpfpm no --multiphp yes ">Multi PHP Only</option>
+                            <option value="--phpfpm no --multiphp no ">No PHP</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        Database
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="checkbox" checked id="mysql" name="mysql" value="--mysql yes" /> MariaDB (Opensoure Mysql)
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <input type="checkbox" id="postgresql" name="postgresql" value="--postgresql yes "/> PostgreSQL
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        FTP Server
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <select name="ftp" id="ftp">
+                            <option value="" selected>VSFTPD</option>
+                            <option value="--vsftpd no --proftpd yes ">PROFTPD</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Mail
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <select name="mail" id="mail">
+                            <option value="--exim yes --dovecot yes --spamassassin yes --clamav yes ">Exim / Dovecot / ClamAV / SpamAssassin</option>
+                            <option value="--exim yes --dovecot yes --spamassassin no --clamav yes ">Exim / Dovecot / ClamAV </option>
+                            <option value="--exim yes --dovecot yes --clamav no --spamassassin yes ">Exim / Dovecot / SpamAssassin </option>
+                            <option value="--exim yes --dovecot yes --clamav no --spamassassin no " selected>Exim / Dovecot </option>
+                            <option value="--exim yes --dovecot no --spamassassin no --clamav no ">Exim </option>
+                            <option value="--exim no --dovecot no --spamassassin no --clamav no ">No Mail</option>
+                        </select>
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-info">SpamAssassin / ClamAV require at least 2 GB of memory!</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Firewall
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <select name="firewall" id="firewall">
+                            <option value="--iptables yes --fail2ban yes " selected>Iptables / Fail2Ban</option>
+                            <option value="--iptables yes --fail2ban no ">Iptables only</option>
+                            <option value="--iptables no --fail2ban no ">No firewall</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Filesystem Quota
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <select name="quota" id="quota">
+                            <option value="--quota no " selected>Disable Quota</option>
+                            <option value="--quota yes ">Enable Quata</option>
+                        </select>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        Hostname
+                    </div>  
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <input type="text" value="" name="hostname" id="hostname">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Port
+                    </div>  
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <input type="text" name="port" id="port" value="8083">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Email
+                    </div>  
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <input type="text" value="" name="email" id="email">
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-12">
+                        Password
+                    </div>  
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <input type="text" value="" name="password" id="password">
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        Default language 
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <select name="lang" id="lang">
+                        <option value="--lang ar">ar</option>
+                        <option value="--lang az">az</option>
+                        <option value="--lang bg">bg</option>
+                        <option value="--lang bs">bs</option>
+                        <option value="--lang cn">cn</option>
+                        <option value="--lang cz">cz</option>
+                        <option value="--lang da">da</option>
+                        <option value="--lang de">de</option>
+                        <option value="--lang el">el</option>
+                        <option value="--lang en" selected>en</option>
+                        <option value="--lang es">es</option>
+                        <option value="--lang fa">fa</option>
+                        <option value="--lang fi">fi</option>
+                        <option value="--lang fr">fr</option>
+                        <option value="--lang hu">hu</option>
+                        <option value="--lang id">id</option>
+                        <option value="--lang it">it</option>
+                        <option value="--lang ja">ja</option>
+                        <option value="--lang ka">ka</option>
+                        <option value="--lang ko">ko</option>
+                        <option value="--lang nl">nl</option>
+                        <option value="--lang no">no</option>
+                        <option value="--lang pl">pl</option>
+                        <option value="--lang pt-BR">pt-BR</option>
+                        <option value="--lang pt">pt</option>
+                        <option value="--lang ro">ro</option>
+                        <option value="--lang ru">ru</option>
+                        <option value="--lang se">se</option>
+                        <option value="--lang sr">sr</option>
+                        <option value="--lang th">th</option>
+                        <option value="--lang tr">tr</option>
+                        <option value="--lang tw">tw</option>
+                        <option value="--lang ua">ua</option>
+                        <option value="--lang ur">ur</option>
+                        <option value="--lang vi">vi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        API Access 
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="checkbox" value="--api yes" name="api" id="api" checked/> Api Access
+                    </div>
+                </div>               
+                <div class="row space">
+                    <div class="col-12">
+                        Interactive Install 
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="checkbox" value="--interactive yes" name="interactive" id="interactive" checked/> Interactive Install
+                    </div>
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        Force install
+                    </div>  
+                </div>
+                <div class="row space">
+                    <div class="col-12">
+                        <input type="checkbox" value="--force" name="force" id="force"/> Force install
+                    </div>
+                </div> 
+             </div>
+        </div>
+      
+        </form>
+        <div class="install-instructions">
+            <h3>Step 1: Login as root into your server</h3>
+            <code>ssh username@your.server</code>
+            <h3>Step 2: Download</h3>
+            <code>wget https://raw.githubusercontent.com/hestiacp/hestiacp/release/install/hst-install.sh</code>
+            <h3>Step 3: Run</h3>
+            <code id="result">sudo bash ./hst-install.sh <span id="string"></span></code>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+         <script src="./js.js"></script>
+
+    </div>
+    </body>
+</html>
+                </td>
+            </tr>
