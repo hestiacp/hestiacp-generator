@@ -1,3 +1,5 @@
-# hestiacp-install-string-generator
+# hestiacp-generator
 
-Using is free.. Stealing, Modifying, Improving is fine :)
+Generates the install string for [[https://www.hestiacp.com]] 
+
+See for more information [[https://github.com/hestiacp/hestiacp]]
