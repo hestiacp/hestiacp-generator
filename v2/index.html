@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hestia Control Panel Installation Script Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.4.2/css/uikit.min.css" integrity="sha256-IRDlJISn3XeFp5E2g3HF7zJs0fkpVT9tVzknobafM44=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.4.0/themes/prism-a11y-dark.min.css">
+    <link rel="stylesheet" href="./assets/css/app.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.4.2/js/uikit.min.js" integrity="sha256-HAyIVWGNIDnFbmeOrTn9jwzT1jx+Is12bseyBUkJESY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.4.2/js/uikit-icons.min.js" integrity="sha256-k6DSZewtbaehZVwn5J+Wj/hLCrmJ3+YJLlPELeaPjsY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js" integrity="sha256-3teItwIfMuVB74Alnxw/y5HAZ2irOsCULFff3EgbtEs=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha256-pEdn/pJ2tyT37axbEIPkyUUfuG1yXR0+YV+h+jphem4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.10/lottie.min.js" integrity="sha256-/56Y/jYu6730zlN8iulnNWn2IcVa4wK/ogwk7n9p2JY=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="./assets/js/app.js"></script>
+</head>
+<body>
+    <div id="loading_overlay"></div>
+    <div id="body_background"></div>
+    <div class="uk-container uk-padding-remove">
+        <div class="header">
+            <h1 class="uk-text-center uk-margin-remove-bottom"><img src="https://www.hestiacp.com/img/logo.png" class="logo" alt="HestiaCP Logo">Hestia Control Panel</h1>
+        </div>
+        <div class="uk-child-width-expand@s uk-margin-top" uk-grid>
+            <div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-large-bottom uk-padding-remove-top">
+                    <div class="content_main">
+                        <h4 class="uk-heading-line uk-text-center uk-margin-medium-top uk-margin-medium-bottom"><span>Installation Script Generator</span></h4>
+                        <form class="uk-grid-small uk-child-width-1-4" uk-grid id="form_generator">
+                            <div>
+                                <label class="uk-form-label" for="select_web_server">Web Server</label>
+                                <div class="uk-form-controls">
+                                    <select name="web_server" class="uk-select" id="select_web_server">
+                                        <option value="--apache yes --nginx yes" selected>Apache & Nginx</option>
+                                        <option value="--apache yes --nginx no">Apache</option>
+                                        <option value="--apache no --nginx yes">Nginx</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_php">PHP</label>
+                                <div class="uk-form-controls">
+                                    <select name="php" class="uk-select" id="select_php">
+                                        <option value="--phpfpm yes --multiphp no" selected>PHP-FPM</option>
+                                        <option value="--phpfpm yes --multiphp yes">PHP-FPM & Multi-PHP</option>
+                                        <option value="--phpfpm no --multiphp no">No PHP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_database">Database Server</label>
+                                <div class="uk-form-controls">
+                                    <select name="database" class="uk-select" id="select_database">
+                                        <option value="--mysql yes --postgresql no">MariaDB (MySQL)</option>
+                                        <option value="--mysql no --postgresql yes">PostgreSQL</option>
+                                        <option value="--mysql yes --postgresql yes">MariaDB (MySQL) & PostgreSQL</option>
+                                        <option value="--mysql no --postgresql no">No Database Server</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_ftp">FTP Server</label>
+                                <div class="uk-form-controls">
+                                    <select name="ftp" class="uk-select" id="select_ftp">
+                                        <option value="--vsftpd yes --proftpd no" selected>VSFTPD</option>
+                                        <option value="--vsftpd no --proftpd yes">PROFTPD</option>
+                                        <option value="--vsftpd no --proftpd no">No FTP Server</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_named">DNS Server</label>
+                                <div class="uk-form-controls">
+                                    <select name="named" class="uk-select" id="select_named">
+                                        <option value="--named yes" selected>Bind</option>
+                                        <option value="--named no">No DNS Server</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_mail">Mail Server</label>
+                                <div class="uk-form-controls">
+                                    <select name="mail" class="uk-select" id="select_mail">
+                                        <option value="--exim yes --dovecot yes" selected>Exim & Dovecoot</option>
+                                        <option value="--exim yes --dovecot no">Exim</option>
+                                        <option value="--exim no --dovecot no">No Mail Server</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_antivirus">Antivirus <small>(Requires at least 2GB Memory)</small></label>
+                                <div class="uk-form-controls">
+                                    <select name="antivirus" class="uk-select" id="select_antivirus">
+                                        <option value="--clamav yes --spamassassin yes">ClamAV & SpamAssassin</option>
+                                        <option value="--clamav yes --spamassassin no">ClamAV</option>
+                                        <option value="--clamav no --spamassassin yes">SpamAssassin</option>
+                                        <option value="--clamav no --spamassassin no" selected>No Antivirus</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_firewall">Firewall</label>
+                                <div class="uk-form-controls">
+                                    <select name="firewall" class="uk-select" id="select_firewall">
+                                        <option value="--iptables yes --fail2ban yes" selected>Iptables & Fail2Ban</option>
+                                        <option value="--iptables yes --fail2ban no">Iptables</option>
+                                        <option value="--iptables no --fail2ban no">No Firewall</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_quota">Filesystem Quota</label>
+                                <div class="uk-form-controls">
+                                    <select name="quota" class="uk-select" id="select_quota">
+                                        <option value="--quota yes">Yes</option>
+                                        <option value="--quota no" selected>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_api">API </label>
+                                <div class="uk-form-controls">
+                                    <select name="api" class="uk-select" id="select_api">
+                                        <option value="--api yes" selected>Yes</option>
+                                        <option value="--api no">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="select_language">Language</label>
+                                <div class="uk-form-controls">
+                                    <select name="language" class="uk-select" id="select_language">
+                                        <option value="--lang ar">Arabic</option>
+                                        <option value="--lang az">Azerbaijani</option>
+                                        <option value="--lang bg">Bulgarian</option>
+                                        <option value="--lang bs">Bosnian</option>
+                                        <option value="--lang cn">Chinese Simplified</option>
+                                        <option value="--lang cz">Czech</option>
+                                        <option value="--lang da">Danish</option>
+                                        <option value="--lang de">German</option>
+                                        <option value="--lang el">Greek</option>
+                                        <option value="--lang en" selected>English</option>
+                                        <option value="--lang es">Spanish</option>
+                                        <option value="--lang fa">Persian</option>
+                                        <option value="--lang fi">Finnish</option>
+                                        <option value="--lang fr">French</option>
+                                        <option value="--lang hr">Croatian</option>
+                                        <option value="--lang hu">Hungarian</option>
+                                        <option value="--lang id">Indonesian</option>
+                                        <option value="--lang it">Italian</option>
+                                        <option value="--lang ja">Japanese</option>
+                                        <option value="--lang ka">Georgian</option>
+                                        <option value="--lang ko">Korean</option>
+                                        <option value="--lang nl">Dutch</option>
+                                        <option value="--lang no">Norwegian</option>
+                                        <option value="--lang pl">Polish</option>
+                                        <option value="--lang pt-BR">Portuguese (Brazil)</option>
+                                        <option value="--lang pt">Portuguese</option>
+                                        <option value="--lang ro">Romanian</option>
+                                        <option value="--lang ru">Russian</option>
+                                        <option value="--lang se">Sami</option>
+                                        <option value="--lang sr">Serbian</option>
+                                        <option value="--lang th">Thai</option>
+                                        <option value="--lang tr">Turkish</option>
+                                        <option value="--lang tw">Twi</option>
+                                        <option value="--lang ua">Ukrainian</option>
+                                        <option value="--lang ur">Urdu</option>
+                                        <option value="--lang vi">Vietnamese</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="input_port">Port</label>
+                                <div class="uk-form-controls">
+                                    <div class="uk-inline uk-width-expand">
+                                        <span class="uk-form-icon" uk-icon="icon: server"></span>
+                                        <input name="--port" class="uk-input " id="input_port" type="number" placeholder="Port" value="8083" required c_required_interactive="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="input_hostname">Hostname</label>
+                                <div class="uk-form-controls">
+                                    <div class="uk-inline uk-width-expand">
+                                        <span class="uk-form-icon" uk-icon="icon: link"></span>
+                                        <input name="--hostname" class="uk-input " id="input_hostname" type="text" placeholder="Hostname" c_required_interactive="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="input_email">Email</label>
+                                <div class="uk-form-controls">
+                                    <div class="uk-inline uk-width-expand">
+                                        <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                                        <input name="--email" class="uk-input " id="input_email" type="email" placeholder="Email" c_required_interactive="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="input_password">Password</label>
+                                <div class="uk-form-controls">
+                                    <div class="uk-inline uk-width-expand">
+                                        <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                        <input name="--password" class="uk-input " id="input_password" type="password" placeholder="Password" c_required_interactive="false">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="input_debs">Debs</label>
+                                <div class="uk-form-controls">
+                                    <div class="uk-inline uk-width-expand">
+                                        <span class="uk-form-icon" uk-icon="icon: pull"></span>
+                                        <input name="--with-debs" class="uk-input " id="input_debs" type="text" placeholder="Debs" c_required_interactive="false">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="input_interactive">Interactive Installation</label>
+                                <div class="uk-form-controls">
+                                    <label><input name="interactive" class="uk-checkbox" id="checkbox_interactive" type="checkbox" value="--interactive yes" checked>&nbsp;Yes</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="uk-form-label" for="input_force">Force Installation</label>
+                                <div class="uk-form-controls">
+                                    <label><input name="force" class="uk-checkbox" id="checkbox_force" type="checkbox" value="--force">&nbsp;Yes</label>
+                                </div>
+                            </div>
+                            <div class="uk-width-1 uk-margin-small-top">
+                                <button type="button" id="btn_form_reset" class="uk-button uk-button-default uk-text-large uk-color-light uk-width-1-1">Reset! &#8634;</button>
+                            </div>
+                        </form>
+                        <div class="uk-width-1 uk-margin-medium-top uk-margin-large-bottom">
+                            <div class="installation_instructions">
+                                <h4 class="uk-heading-line uk-text-center uk-margin-medium-top"><span>Installation Instructions</span></h4>
+                                <div id="installation_instructions_step_1">
+                                    <h5>1. Login to your server as root via SSH.</h5>
+                                    <div class="uk-position-relative">
+                                        <pre data-lang="bash" class="code_highlight"><code class="language-bash">ssh root@your.server</code>
+                                    <button class="copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button>
+                                </pre>
+                                    </div>
+                                </div>
+                                <div id="installation_instructions_step_2">
+                                    <h5>2. Download Hestia Control Panel.</h5>
+                                    <div class="uk-position-relative">
+                                        <pre data-lang="bash" class="code_highlight"><code class="language-bash">wget https://raw.githubusercontent.com/hestiacp/hestiacp/release/install/hst-install.sh </code>
+                                    <button class="copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button>
+                                </pre>
+                                    </div>
+                                </div>
+                                <div id="installation_instructions_step_3">
+                                    <h5>3. Copy and run the following installation script.</h5>
+                                    <div class="uk-position-relative">
+                                        <pre data-lang="bash" class="code_highlight"><code class="language-bash" id="div_installation_script"></code>
+                                    <button class="copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button>
+                                </pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div>
+                                <span id="footer_1_text">Get us a cup of coffee?<i id="footer_1_animation"></i><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ST87LQH2CHGLA">@HestiaCP</a> <a
+                                        href="https://github.com/rmj-s">@rmj-s</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

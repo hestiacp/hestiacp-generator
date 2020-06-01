@@ -1,0 +1,154 @@
+body {
+    background-color: #253444;
+    background-size: cover;
+}
+
+.uk-color-light, .uk-color-light:hover, .uk-color-light:active {
+    color: #ffffff !important;
+}
+
+#body_background {
+    z-index: 0;
+    position: fixed;
+    top: 3rem;
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.logo {
+    width: 60px;
+    height: 70px;
+}
+
+.content_main {
+    position: relative;
+    background: #00000050;
+    padding: 1rem 2rem 2rem 2rem;
+}
+
+.uk-form-label, .uk-card-default, h1, h4, h5 {
+    color: #ffffff;
+}
+
+.uk-card-default {
+    border: none;
+    box-shadow: none;
+}
+
+.code_highlight {
+    background: #00000096 !important;
+    height: 1.5rem;
+    overflow-y: hidden !important;
+    overflow-x: scroll;
+}
+
+#btn_form_reset:hover {
+    border: 1px solid #f95d9b;
+}
+
+.content_main, #btn_form_reset {
+    border-radius: 25px !important;
+}
+
+.uk-card-default {
+    background: transparent !important;
+}
+
+.uk-form-icon {
+    bottom: auto;
+    margin-top: 4.5%;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    margin-top: 10rem;
+    border-radius: 0px 0px 25px 25px;
+}
+
+#footer_1_animation svg {
+    width: 3rem !important;
+}
+
+#loading_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    z-index: 9999;
+}
+
+.code_highlight::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: transparent;
+}
+
+.code_highlight::-webkit-scrollbar {
+    width: 0px;
+    height: 4px;
+    background-color: transparent;
+}
+
+.code_highlight::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+
+.copy-code-button, .copy-code-button span {
+    cursor: pointer;
+    transition: all .25s ease
+}
+
+.copy-code-button {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    overflow: visible;
+    padding: .65em .8em;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    font-size: 1em;
+    background: #000000;
+    color: #ffffff;
+    opacity: 0
+}
+
+.copy-code-button span {
+    border-radius: 3px;
+    background: inherit;
+    pointer-events: none
+}
+
+.copy-code-button .error, .copy-code-button .success {
+    position: absolute;
+    z-index: -100;
+    top: 50%;
+    left: 0;
+    padding: .5em .65em;
+    font-size: .825em;
+    opacity: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.copy-code-button.error .error, .copy-code-button.success .success {
+    opacity: 1;
+    -webkit-transform: translate(-115%, -50%);
+    transform: translate(-115%, -50%)
+}
+
+.copy-code-button:focus, pre:hover .copy-code-button {
+    opacity: 1
+}
