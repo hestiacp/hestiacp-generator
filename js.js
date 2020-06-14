@@ -1,11 +1,11 @@
 $( document ).ready( function (){
-    $(document).find('code').each( function (){
+    $(document).find('pre').each( function (){
         $(this).click(copyToClipboard);
     });
     $(document).find('input').each( function (){
         $(this).change(changeString);
     });
-    $(document).find('select').each( function (){
+    $(document).find('code').each( function (){
         $(this).change(changeString);
     })
     changeString();
@@ -52,32 +52,30 @@ function changeString(){
     string += $('#firewall').val() + $('#quota').val();
     
     if($('#hostname').val()){
-        string += '--hostname ' + $('#hostname').val();
+        string += ' --hostname ' + $('#hostname').val()+' ';
     }
     if($('#email').val()){
-        string += '--email ' + $('#email').val();
+        string += ' --email ' + $('#email').val()+' ';
     }
     if($('#port').val()){
-        string += '--port ' + $('#port').val();
+        string += ' --port ' + $('#port').val()+' ';
     }
     if($('#password').val()){
-        string += '--port ' + $('#port').val();
+        string += ' --password ' + $('#password').val()+' ';
     }     
     string += $('#lang').val()+ ' ';
     if($('#api').is(":checked")){
-        string += '--api yes ';
+        string += ' --api yes ';
     }else{
-        string += '--api no ';
+        string += ' --api no ';
     }
     if($('#hostname').val() && $('#email').val() && !$('#interactive').is(":checked")){
-        string += '--interactive no ';
+        string += ' --interactive no ';
     }else{
-        string += '--interactive yes ';
+        string += ' --interactive yes ';
     }
     if($('#force').is(":checked")){
         string += '--force';
     }
-    
-    console.log(string);
     $('#string').html(string);
 }

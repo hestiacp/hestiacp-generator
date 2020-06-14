@@ -6,3 +6,12 @@
 .space{
     margin-bottom: 5px;
 }
+
+.master{
+    display: none;
+}
+
+pre{
+    background-color: #ccc;
+    padding:5px;
+}
